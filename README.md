@@ -1,8 +1,13 @@
 # EasyRTP
-Easy to use RTP plugin
+Easy to use, straight forward RTP plugin. Performant by design
 
-# Perfomant
-It doesn't do anything fancy or weird like loading chunks, like most RTP plugins do. Which leads it to being performant.
+# Usage
+It has two commands:
+* `/rtp` teleports you randomly
+* `/easyrtp` a link to this repo
+
+And one permission:
+* `easyrtp.rtp` for using /rtp
 
 # Installation
 * Download the .jar from the Releases tab
