@@ -1,0 +1,11 @@
+# In blocks
+minrange: -50000
+maxrange: 50000
+
+# In seconds
+tpdelay: 3
+
+# messages
+teleportingMessage: "&fTeleporting in &e{seconds} &fseconds..."
+worldOnlyMessage: "&e/RTP &fis only allowed in the overworld."
+noPermissionMessage: "&eYou do not have the &eeasyrtp.rtp &fpermisison."

@@ -1,0 +1,11 @@
+name: easyRTP
+version: '1.0-SNAPSHOT'
+main: lol.sander.easyRTP.EasyRTP
+api-version: '1.19'
+authors: [ sanderson ]
+website: sander.lol
+
+commands:
+  rtp:
+    permission: easyrtp.rtp
+    description: Teleports you randomly

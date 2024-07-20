@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="easyRTP:jar">
+    <output-path>$PROJECT_DIR$/../dev/plugins</output-path>
+    <root id="archive" name="easyRTP.jar">
+      <element id="module-output" name="easyRTP.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/2.0.10-RC/f8f8570025e75128a0a1fe6bb2c456804fac6264/kotlin-stdlib-2.0.10-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/2.0.10-RC/e85d8a658ef6e381072940a350d41f54029fd39e/kotlin-stdlib-jdk8-2.0.10-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/2.0.10-RC/48f2bb918e5e4ab309725e5c8eee23d5142ba0d0/kotlin-stdlib-jdk7-2.0.10-RC.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
+    </root>
+  </artifact>
+</component>
