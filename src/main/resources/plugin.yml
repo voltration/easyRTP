@@ -9,3 +9,5 @@ commands:
   rtp:
     permission: easyrtp.rtp
     description: Teleports you randomly
+  easyrtp:
+    description: Link to repo

@@ -12,7 +12,7 @@ class EasyRTP(private val plugin: EasyRTP) : CommandExecutor {
         label: String,
         args: Array<out String>): Boolean {
 
-        sender.sendMessage(plugin.format("&eEASYRTP"))
+        sender.sendMessage(plugin.format("&ehttps://github.com/voltration/easyRTP"))
         return true
     }
 }
