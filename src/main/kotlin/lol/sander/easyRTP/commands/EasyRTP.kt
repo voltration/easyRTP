@@ -1,18 +1,17 @@
 package lol.sander.easyRTP.commands
 
-import lol.sander.easyRTP.EasyRTP
+import lol.sander.easyRTP.util.Format
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 
-class EasyRTP(private val plugin: EasyRTP) : CommandExecutor {
-    override fun onCommand(
-        sender: CommandSender,
-        cmd: Command,
-        label: String,
-        args: Array<out String>): Boolean {
+class EasyRTP : CommandExecutor {
 
-        sender.sendMessage(plugin.format("&ehttps://github.com/voltration/easyRTP"))
+    private val formatter = Format()
+
+    override fun onCommand(sender: CommandSender, cmd: Command, label: String, args: Array<out String>): Boolean {
+
+        sender.sendMessage(formatter.format("&ehttps://github.com/voltration/easyRTP"))
         return true
     }
 }

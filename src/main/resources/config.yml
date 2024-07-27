@@ -1,11 +1,19 @@
-# In blocks
+# EasyRTP
+
+# Forces the plugin to not place the player in water.
+# Due to the nature of the logic of looping through chunks it may affect server performance.
+# While I haven't experienced it myself, it is worth testing what's best for you.
+dontSpawnInWater: true
+
+# X and Z range players can teleport between, in blocks
 minrange: -50000
 maxrange: 50000
 
-# In seconds
-tpdelay: 3
+# The TP delay, in seconds
+tpdelay: 5
 
-# messages
-teleportingMessage: "&fTeleporting in &e{seconds} &fseconds..."
+# messages, supports hex colors by doing e.g. #000000 in front of messages
+playerOnlyMessage: "Only players can use this command."
+teleportingMessage: "Teleporting in &e{seconds} &fseconds..."
 worldOnlyMessage: "&e/RTP &fis only allowed in the overworld."
-noPermissionMessage: "&eYou do not have the &eeasyrtp.rtp &fpermisison."
+noPermissionMessage: "You do not have the &eeasyrtp.rtp &fpermisison."
