@@ -1,5 +1,5 @@
 name: easyRTP
-version: '1.0-SNAPSHOT'
+version: "${version}"
 main: lol.sander.easyRTP.EasyRTP
 api-version: '1.21'
 authors: [ sanderson ]
