@@ -12,31 +12,35 @@ import org.bukkit.entity.Player
 class RTP(private val plugin: EasyRTP) : CommandExecutor {
 
     private val dontSpawnInWater = plugin.config.getBoolean("dontSpawnInWater")
-    private val delay = plugin.config.getInt("tpdelay", 5)
+    private val delay = plugin.config.getInt("tpdelay")
 
     private fun teleportPlayerAsync(p: Player) {
         p.sendMessage(getMessageString("teleportingMessage").replace("{seconds}", delay.toString()))
 
+        if (!dontSpawnInWater) {
+            val (x, y, z) = generateRandomCoordinates(p)
+
+            plugin.server.scheduler.runTaskLater(plugin, Runnable {
+                p.teleport(Location(p.world, x, y, z))
+            }, delay * 20L)
+
+            return
+        }
+
         plugin.server.scheduler.runTaskAsynchronously(plugin, Runnable {
             var validLocation = false
-            var location: Location
+            var location: Location? = null
 
             while (!validLocation) {
-                val (x, z) = generateRandomNumber() to generateRandomNumber()
-                val y = p.world.getHighestBlockYAt(x, z)
-                location = Location(p.world, x.toDouble(), (y + 1).toDouble(), z.toDouble())
+                val (x, y, z) = generateRandomCoordinates(p)
+                validLocation = checkSpawnArea(p, x.toInt(), y.toInt(), z.toInt())
+                location = Location(p.world, x, y, z)
+            }
 
-                validLocation = if (dontSpawnInWater) {
-                    checkSpawnArea(p, x, y, z)
-                } else {
-                    true
-                }
-
-                if (validLocation) {
-                    plugin.server.scheduler.runTaskLater(plugin, Runnable {
-                        p.teleport(location)
-                    }, delay * 20L)
-                }
+            if (location != null) {
+                plugin.server.scheduler.runTaskLater(plugin, Runnable {
+                    p.teleport(location)
+                }, delay * 20L)
             }
         })
     }
