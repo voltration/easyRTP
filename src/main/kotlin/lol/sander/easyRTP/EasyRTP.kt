@@ -1,10 +1,15 @@
 package lol.sander.easyRTP
 
-import lol.sander.easyRTP.commands.EasyRTP
 import lol.sander.easyRTP.commands.RTP
 import org.bukkit.plugin.java.JavaPlugin
 
+lateinit var plugin: EasyRTP
+    private set
+
 class EasyRTP : JavaPlugin() {
+    init {
+        plugin = this
+    }
 
     override fun onEnable() {
         saveDefaultConfig()
