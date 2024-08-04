@@ -1,15 +1,12 @@
 package lol.sander.easyRTP.util
 
-import lol.sander.easyRTP.EasyRTP
+import lol.sander.easyRTP.plugin
 import kotlin.random.Random
 
-class GenerateRandomNumber(private val plugin: EasyRTP) {
+private val min = plugin.config.getInt("minrage")
+private val max = plugin.config.getInt("maxrange")
 
-    private val min = plugin.config.getString("minrange")?.toIntOrNull() ?: 50_000
-    private val max = plugin.config.getString("maxrange")?.toIntOrNull() ?: 50_000
-
-    fun generateRandomNumber(): Int {
-        val randomNumber = Random.nextInt(min, max + 1)
-        return if (Random.nextBoolean()) randomNumber else -randomNumber
-    }
+fun generateRandomNumber(): Int {
+    val randomNumber = Random.nextInt(min, max + 1)
+    return if (Random.nextBoolean()) randomNumber else -randomNumber
 }

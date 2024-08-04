@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm") version "2.0.10-RC"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.github.goooler.shadow") version "8.1.8"
 }
 
 group = "lol.sander"
@@ -16,10 +16,11 @@ repositories {
     }
 }
 
+
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 }
 
 val targetJavaVersion = 21
@@ -32,10 +33,15 @@ tasks.build {
 }
 
 tasks.processResources {
-    val props = mapOf("version" to version)
-    inputs.properties(props)
-    filteringCharset = "UTF-8"
     filesMatching("plugin.yml") {
-        expand(props)
+        expand("version" to project.version)
     }
+}
+
+tasks.shadowJar {
+    dependencies {
+        exclude(dependency("org.jetbrains:annotations"))
+    }
+
+    relocate("kotlin", "lol.sander.easyRTP.libs.kotlin")
 }

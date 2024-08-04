@@ -1,15 +1,9 @@
 package lol.sander.easyRTP.util
 
-import lol.sander.easyRTP.EasyRTP
+import lol.sander.easyRTP.plugin
 
-class GetString(private val plugin: EasyRTP) {
+fun getMessageString(configField: String): String {
+    val errorMessage = "&cWarning: No message for ${configField}."
 
-    private val formatter = Format()
-
-    fun getString(configField: String): String {
-        val errorMessage = "&cWarning: No message for ${configField}."
-
-        return formatter.format(plugin.config.getString(configField) ?: errorMessage)
-    }
-
+    return formatMessage(plugin.config.getString(configField) ?: errorMessage)
 }

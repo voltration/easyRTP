@@ -1,9 +1,7 @@
 package lol.sander.easyRTP.commands
 
 import lol.sander.easyRTP.EasyRTP
-import lol.sander.easyRTP.util.CheckSpawn
-import lol.sander.easyRTP.util.GenerateRandomNumber
-import lol.sander.easyRTP.util.GetString
+import lol.sander.easyRTP.util.*
 import org.bukkit.Location
 import org.bukkit.World
 import org.bukkit.command.Command
@@ -14,35 +12,35 @@ import org.bukkit.entity.Player
 class RTP(private val plugin: EasyRTP) : CommandExecutor {
 
     private val dontSpawnInWater = plugin.config.getBoolean("dontSpawnInWater")
-    private val delay = plugin.config.getString("tpdelay")?.toIntOrNull() ?: 5
-
-    private val messages = GetString(plugin)
-    private val random = GenerateRandomNumber(plugin)
-    private val checker = CheckSpawn()
+    private val delay = plugin.config.getInt("tpdelay")
 
     private fun teleportPlayerAsync(p: Player) {
-        p.sendMessage(messages.getString("teleportingMessage").replace("{seconds}", delay.toString()))
+        p.sendMessage(getMessageString("teleportingMessage").replace("{seconds}", delay.toString()))
+
+        if (!dontSpawnInWater) {
+            val (x, y, z) = generateRandomCoordinates(p)
+
+            plugin.server.scheduler.runTaskLater(plugin, Runnable {
+                p.teleport(Location(p.world, x, y, z))
+            }, delay * 20L)
+
+            return
+        }
 
         plugin.server.scheduler.runTaskAsynchronously(plugin, Runnable {
             var validLocation = false
-            var location: Location
+            var location: Location? = null
 
             while (!validLocation) {
-                val (x, z) = random.generateRandomNumber() to random.generateRandomNumber()
-                val y = p.world.getHighestBlockYAt(x, z)
-                location = Location(p.world, x.toDouble(), (y + 1).toDouble(), z.toDouble())
+                val (x, y, z) = generateRandomCoordinates(p)
+                validLocation = checkSpawnArea(p, x.toInt(), y.toInt(), z.toInt())
+                location = Location(p.world, x, y, z)
+            }
 
-                validLocation = if (dontSpawnInWater) {
-                    checker.checkArea(p, x, y, z)
-                } else {
-                    true
-                }
-
-                if (validLocation) {
-                    plugin.server.scheduler.runTaskLater(plugin, Runnable {
-                        p.teleport(location)
-                    }, delay * 20L)
-                }
+            if (location != null) {
+                plugin.server.scheduler.runTaskLater(plugin, Runnable {
+                    p.teleport(location)
+                }, delay * 20L)
             }
         })
     }
@@ -50,19 +48,19 @@ class RTP(private val plugin: EasyRTP) : CommandExecutor {
     override fun onCommand(sender: CommandSender, cmd: Command, label: String, args: Array<out String>): Boolean {
 
         if (sender !is Player) {
-            sender.sendMessage(messages.getString("playerOnlyMessage"))
+            sender.sendMessage(getMessageString("playerOnlyMessage"))
             return true
         }
 
         val p: Player = sender
 
         if (!p.hasPermission("easyrtp.rtp")) {
-            p.sendMessage(messages.getString("noPermissionMessage"))
+            p.sendMessage(getMessageString("noPermissionMessage"))
             return true
         }
 
         if (p.world.environment != World.Environment.NORMAL) {
-            p.sendMessage(messages.getString("worldOnlyMessage"))
+            p.sendMessage(getMessageString("worldOnlyMessage"))
             return true
         }
 
