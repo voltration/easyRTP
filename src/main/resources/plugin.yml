@@ -11,3 +11,8 @@ commands:
     description: Teleports you randomly
   easyrtp:
     description: Link to repo
+
+permissions:
+  easyrtp.rtp:
+    description: RTP command permission
+    default: true
