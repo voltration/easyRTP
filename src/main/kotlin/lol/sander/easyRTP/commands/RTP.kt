@@ -12,7 +12,7 @@ import org.bukkit.entity.Player
 class RTP(private val plugin: EasyRTP) : CommandExecutor {
 
     private val dontSpawnInWater = plugin.config.getBoolean("dontSpawnInWater")
-    private val delay = plugin.config.getString("tpdelay")?.toIntOrNull() ?: 5
+    private val delay = plugin.config.getInt("tpdelay", 5)
 
     private fun teleportPlayerAsync(p: Player) {
         p.sendMessage(getMessageString("teleportingMessage").replace("{seconds}", delay.toString()))
