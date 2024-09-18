@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI/CD for Kotlin Spigot Plugin
 
 on:
   push:
@@ -38,9 +38,18 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
 
+      - name: Create Tag
+        id: create_tag
+        run: |
+          TAG_NAME="v$(date +'%Y%m%d%H%M%S')"
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+          echo "::set-output name=TAG_NAME::$TAG_NAME"
+
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
         with:
           files: build/libs/*.jar
+          tag_name: ${{ steps.create_tag.outputs.TAG_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
