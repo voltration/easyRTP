@@ -6,6 +6,8 @@ authors: [ sanderson ]
 website: sander.lol
 
 commands:
+  test:
+    description: Hi
   rtp:
     permission: easyrtp.rtp
     description: Teleports you randomly
