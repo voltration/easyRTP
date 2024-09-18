@@ -14,7 +14,7 @@ class EasyRTP : JavaPlugin() {
 
     override fun onEnable() {
         saveDefaultConfig()
-        this.getCommand("rtp")?.setExecutor(RTP(this))
+        this.getCommand("rtp")?.setExecutor(RTP())
         this.getCommand("easyrtp")?.setExecutor(EasyRTPCommand())
     }
 

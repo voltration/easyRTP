@@ -1,19 +1,49 @@
 # EasyRTP
 
 # Forces the plugin to not place the player in water.
-# Due to the nature of the logic of looping through chunks it may affect server performance.
-# While I haven't experienced it myself, it is worth testing what's best for you.
 dontSpawnInWater: true
 
+# Cooldown on using the command, in seconds
+cooldown: 60
+
 # X and Z range players can teleport between, in blocks
-minrange: -50000
-maxrange: 50000
+minRange: -50000
+maxRange: 50000
 
 # The TP delay, in seconds
-tpdelay: 5
+tpDelay: 5
+
+# Play sound when couting down teleport
+playSoundOnCountdown: true
+
+# Should Y axis be the highest block in the terrain or random aswell?
+getHighestBlock: true
+
+# Should the spawning platform be enabled
+spawnPlatform: true
+
+# The sound to play
+countdownSound: BLOCK_NOTE_BLOCK_PLING
+
+# How big should the spawning platform be? (e.g. if you write 3 it will be a 3x3, and 5 for 5x5...)
+spawnPlatformSize: 3
+
+# Should the platform decay/be deleted?
+spawnPlatformDecayEnabled: true
+
+# How long should the platform stay? In seconds.
+spawnPlatformDecayTime: 10
+
+# What is the platform made of?
+spawnPlatformBlock: BEDROCK
+
+# Prefix for every message
+enablePrefix: true
+prefix: "&dEasyRTP &8|"
 
 # messages, supports hex colors by doing e.g. #000000 in front of messages
 playerOnlyMessage: "Only players can use this command."
 teleportingMessage: "Teleporting in &e{seconds} &fseconds..."
 worldOnlyMessage: "&e/RTP &fis only allowed in the overworld."
 noPermissionMessage: "You do not have the &eeasyrtp.rtp &fpermisison."
+cooldownMessage: "You have to wait &e{seconds}s &fuse this command again."
