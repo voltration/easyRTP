@@ -38,15 +38,12 @@ tasks.processResources {
 }
 
 tasks.shadowJar {
-    archiveBaseName.set("easyRTP") // Set the base name of the JAR
-    archiveVersion.set(project.version.toString()) // Use project version for versioning
-    archiveClassifier.set("") // This removes the "-all" suffix often added by shadowJar
-
     dependencies {
         exclude(dependency("org.jetbrains:annotations"))
     }
 
-    // Relocate Kotlin standard library
     relocate("kotlin", "lol.sander.easyRTP.libs.kotlin")
 }
+
+
 
