@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "lol.sander"
-version = "1.0-SNAPSHOT"
+version = "2.0.0"
 
 repositories {
     mavenCentral()
@@ -19,7 +19,6 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
-
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 }
 
@@ -43,5 +42,7 @@ tasks.shadowJar {
         exclude(dependency("org.jetbrains:annotations"))
     }
 
+    // Relocate Kotlin standard library
     relocate("kotlin", "lol.sander.easyRTP.libs.kotlin")
 }
+

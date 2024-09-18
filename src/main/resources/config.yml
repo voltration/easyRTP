@@ -6,11 +6,20 @@
 dontSpawnInWater: true
 
 # X and Z range players can teleport between, in blocks
-minrange: -50000
-maxrange: 50000
+minRange: -50000
+maxRange: 50000
 
 # The TP delay, in seconds
-tpdelay: 5
+tpDelay: 5
+
+# Should Y axis be the highest block in the terrain or random aswell?
+getHighestBlock: true
+
+# Should the spawning platform be enabled
+spawnPlatform: true
+
+# How big should the spawning platform be? (e.g. if you write 3 it will be a 3x3, and 5 for 5x5...)
+spawnPlatformSize: 3
 
 # messages, supports hex colors by doing e.g. #000000 in front of messages
 playerOnlyMessage: "Only players can use this command."

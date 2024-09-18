@@ -1,10 +1,6 @@
 package lol.sander.easyRTP.util
 
-import org.bukkit.entity.Player
-
-fun generateRandomCoordinates(p: Player): Triple<Double, Double, Double> {
+fun generateRandomCoordinates(): Pair<Int, Int> {
     val (x, z) = generateRandomNumber() to generateRandomNumber()
-    val y = p.world.getHighestBlockYAt(x, z)
-
-    return Triple(x.toDouble(), y.toDouble(), z.toDouble())
+    return Pair(x, z)
 }

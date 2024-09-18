@@ -1,5 +1,5 @@
 name: easyRTP
-version: "${version}"
+version: "2.0.0"
 main: lol.sander.easyRTP.EasyRTP
 api-version: '1.21'
 authors: [ sanderson ]
@@ -10,7 +10,7 @@ commands:
     permission: easyrtp.rtp
     description: Teleports you randomly
   easyrtp:
-    description: Link to repo
+    description: Shows configuration
 
 permissions:
   easyrtp.rtp:
