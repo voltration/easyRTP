@@ -43,18 +43,15 @@ jobs:
         run: echo "::set-output name=COMMIT_HASH::$(git rev-parse --short HEAD)"
 
       - name: Create Tag
-        id: create_tag
         run: |
           TAG_NAME="${{ steps.get_commit.outputs.COMMIT_HASH }}"
           git tag $TAG_NAME
-          git push origin $TAG_NAME
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          git push https://$GITHUB_ACTOR:${{ secrets.PAT_TOKEN }}@github.com/$GITHUB_REPOSITORY.git $TAG_NAME
 
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
         with:
           files: build/libs/*.jar
-          tag_name: ${{ steps.create_tag.outputs.TAG_NAME }}
+          tag_name: ${{ steps.get_commit.outputs.COMMIT_HASH }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
