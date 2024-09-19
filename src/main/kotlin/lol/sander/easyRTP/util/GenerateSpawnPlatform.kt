@@ -17,8 +17,6 @@ fun generateSpawnPlatform(p: Player, x: Int, y: Int, z: Int) {
         for (j in -halfSize..halfSize) {
             val loc = Location(p.world, (x + i).toDouble(), (y - 1).toDouble(), (z + j).toDouble())
             val blockAtLoc = p.world.getBlockAt(loc)
-
-            // Replace block regardless of its type, including air
             val originalBlockType = blockAtLoc.type
             blockAtLoc.type = block
 
